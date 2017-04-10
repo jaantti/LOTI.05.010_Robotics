@@ -47,7 +47,8 @@ while len(open) > 0 and finish not in closed:
         open.sort()
         best = open.pop(0)
         closed.append(best)
-    best.type = 4
+    if best.type != 3:
+        best.type = 4
     x = best.x
     y = best.y
     toCheck = [[x-1, y-1], [x, y-1], [x+1, y-1], [x-1, y], [x+1, y], [x-1, y+1], [x, y+1], [x+1, y+1]]
@@ -71,16 +72,18 @@ while len(open) > 0 and finish not in closed:
                         toCheckNode.gScore = gs
                         toCheckNode.parent = best
     f.updateNp(nodes)
-    time.sleep(0.1)
+    #time.sleep(0.5)
 
 currentPath = finish
 
 while not currentPath.equals(start):
     index = closed.index(currentPath)
-    closed[index].type = 5
+    if closed[index].type != 3:
+        closed[index].type = 5
     currentPath = closed[index].parent
-    f.updateNp(nodes)
-    time.sleep(0.5)
+
+    time.sleep(0.1)
+f.updateNp(nodes)
 finisIndex = closed.index(finish)
 
 f.closeOnMouse()

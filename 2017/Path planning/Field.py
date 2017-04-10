@@ -40,6 +40,7 @@ class Field:
                     sq.setFill(color_rgb(220, 130, 220))
 
     def updateNp(self, npArray):
+        #self.win.delete('all')
         for i in npArray:
             for item in i:
                 time.sleep(self.sleep)
@@ -50,8 +51,8 @@ class Field:
                 if item.parent is not None:
                     circ = Circle(Point(item.x+0.5, item.y+0.5), 0.1)
                     circ.draw(self.win)
-                    linex = item.x - item.parent.x
-                    liney = item.y - item.parent.y
+                    linex = (item.x - item.parent.x)*0.5
+                    liney = (item.y - item.parent.y)*0.5
                     line = Line(Point(item.x+0.5, item.y+0.5), Point(item.x+0.5 - linex, item.y+0.5-liney))
                     line.draw(self.win)
                 # Passable terrain
